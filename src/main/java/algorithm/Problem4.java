@@ -8,8 +8,8 @@ package algorithm;
 public class Problem4 {
     public static void main(String[] args) {
         Problem4 pro = new Problem4();
-        int[] nums1 = new int[]{1, 3};
-        int[] nums2 = new int[]{2};
+        int[] nums1 = new int[]{1, 2};
+        int[] nums2 = new int[]{3, 4};
         System.out.println(pro.findMedianSortedArrays(nums1, nums2));
         System.out.println(pro.findMedianSortedArrays2(nums1, nums2));
         if (pro.findMedianSortedArrays2(nums1, nums2) != pro.findMedianSortedArrays(nums1, nums2))
@@ -57,14 +57,14 @@ public class Problem4 {
      */
     public double findMedianSortedArrays2(int[] nums1, int[] nums2) {
         int totalLength = nums1.length + nums2.length;
-        int midIdx = totalLength / 2;
+        int midIdx = totalLength / 2 + 1;
 
         if (totalLength % 2 == 0)
             // 偶数个
-            return (getKthElement(nums1, nums2, midIdx) + getKthElement(nums1, nums2, midIdx + 1)) >> 1;
+            return (getKthElement(nums1, nums2, midIdx) + getKthElement(nums1, nums2, midIdx - 1)) / 2.0;
         else
             //奇数个
-            return getKthElement(nums1, nums2, midIdx + 1);
+            return getKthElement(nums1, nums2, midIdx);
     }
 
     public int getKthElement(int[] nums1, int[] nums2, int k) {
